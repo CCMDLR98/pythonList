@@ -44,6 +44,8 @@ def ordenarpornombre(names,fila):
         for line in lastLista:
             sortFile.write(line + '\n')
 
+def agregarUsuario(names):
+
 
 while opcion:
     print(""""Que desea hacer? (Elija una opción)
