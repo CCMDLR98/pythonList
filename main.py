@@ -28,9 +28,10 @@ def ordenarpornombre(names,fila):
         for line in fil:
             namesLista.append(line.strip())
     for item in namesLista:
+        print(listaofLista)
         listaofLista.append(item.split())
         listaofLista.sort(key=lambda item: item[fila])
-    print(listaofLista)
+    # print(listaofLista)
     for item in listaofLista:
         stringBase = ''
         cont = 0
