@@ -1,28 +1,49 @@
 import re
-
 names = 'listanombres.txt'
-
+opcion = 0
 with open("listanombres.txt", "r") as file:
     linea = file.read().split(',')
     print("----------------Lista----------------")
     for linea in linea:
         print(linea)
     print("-------------------------------------")
-
     opcion = True
 
-def ordenarpornombre(names):
-    namesLista = list()
-    with open (names, 'r') as fil:
+
+def printFile(names):
+    with open("listanombres.txt", "r") as file:
+        linea = file.read().split(',')
+        print("----------------Lista----------------")
+        for linea in linea:
+            print(linea)
+        print("-------------------------------------")
+
+countLambda = 0
+def ordenarpornombre(names,fila):
+    list = []
+    namesLista = []
+    listaofLista = []
+    lastLista = []
+    with open(names, 'r') as fil:
         for line in fil:
             namesLista.append(line.strip())
-    namesLista.sort()
-    with open(names,'w') as sortFile:
-        for line in namesLista:
-            sortFile.write(line+'\n')
-    print(namesLista)
+    for item in namesLista:
+        listaofLista.append(item.split())
+        listaofLista.sort(key=lambda item: item[fila])
+    print(listaofLista)
+    for item in listaofLista:
+        stringBase = ''
+        cont = 0
+        for inner in (item):
+            stringBase = stringBase + inner + " "
+            cont += 1
+            if cont == 4:
+                lastLista.append(stringBase.strip())
+                cont = 0
+    with open(names, 'w') as sortFile:
+        for line in lastLista:
+            sortFile.write(line + '\n')
 
-# def ordenarporApellidoP(names)
 
 while opcion:
     print(""""Que desea hacer? (Elija una opción)
@@ -37,13 +58,17 @@ while opcion:
 
     opcion = input("Ingrese una opción del 1 al 7: ")
     if opcion == "1":
-        ordenarpornombre(names)
+        ordenarpornombre(names, 0)
+        printFile(names)
     elif opcion == "2":
-        print("dos")
+        ordenarpornombre(names, 1)
+        printFile(names)
     elif opcion == "3":
-        print("tre")
+        ordenarpornombre(names, 2)
+        printFile(names)
     elif opcion == "4":
-        print("cuatro")
+        ordenarpornombre(names, 3)
+        printFile(names)
     elif opcion == "5":
         print("cinco")
     elif opcion == "6":
